@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  bendrocorpbackgroundagent:
+    image: bendrocorpbackgroundagent
+    build:
+      context: .
+      dockerfile: BendroCorpBackgroundAgent/Dockerfile
