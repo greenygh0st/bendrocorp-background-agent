@@ -1,2 +1,2 @@
-# bendrocorp-background-agent
-Written in .NET core. Compiled and is a little bit more reliable than Rails task runners. Don't tell the rails people that...
+# Background Agent
+Background task runner for BendroCorp. Looks to the task_managers table for scheduling.
