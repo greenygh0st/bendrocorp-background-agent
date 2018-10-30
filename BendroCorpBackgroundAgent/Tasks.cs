@@ -161,7 +161,7 @@ namespace BendroCorpBackgroundAgent
                     // Send WebHook to general chat
                     WebHookPayload webHookPayload = new WebHookPayload()
                     {
-                        content = $"@everyone A new operation has been posted to the Employee Portal! You can get more information here: https://my.bendrocorp.com/events#!/{ev["name"].ToString().ToLower().Replace(" ", "-")}-{ev["id"].ToString()}"
+                        content = $"@everyone A new operation has been posted to the Employee Portal! You can get more information here: https://my.bendrocorp.com/events/{ev["id"].ToString()}"
                     };
                     WebhookSender.Send(generalDiscordChannel, webHookPayload).Wait();
                     unicorn.ExecuteNonQueryOfSql($"update events set published_discord = true where id = {ev["id"].ToString()}");
