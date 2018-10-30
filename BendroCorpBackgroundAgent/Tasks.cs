@@ -93,9 +93,16 @@ namespace BendroCorpBackgroundAgent
                     string adminMessage = $"<p>Dormant approval check performed with {dormants.Count} results.</p>" +
                         $"<p>{string.Join("<br />", dormants)}</p>" +
                         "<p>Please harass the above individuals if they do finish their approvals in a timely manner.</p>";
+                        
+                        string DiscordAdminMessage = $"Dormant approval check performed with {dormants.Count} results: " +
+                        $"{string.Join(", ", dormants)}. " +
+                        "Please harass the above individuals if they do finish their approvals in a timely manner. ";
+                    // email
                     SendGridHelper sendGrid = new SendGridHelper(reciever: adminEmail, email: adminEmail, subject: "Agents: Dormant Approvals Check", message: adminMessage);
                     sendGrid.Send().Wait();
-                    WebhookSender.Send(discordMessagesChannel, new WebHookPayload { content = adminMessage }).Wait();
+
+                    //discord
+                    WebhookSender.Send(discordMessagesChannel, new WebHookPayload { content = DiscordAdminMessage }).Wait();
                 }
 
                 Console.WriteLine("Finished checking for dormant approvals!");
